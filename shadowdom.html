@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  经过测试 使用了shadowdom之后 全局样式影响不了组件内部 组件内部也影响不了全局。
+  <style>
+      .div-blue {
+        background: blue;
+        width: 100px; height: 100px;
+      }
+  </style>
+  <div class="div-red"></div>
+  <div class="div-blue"></div>
+  <cus-div id="cusElement"></cus-div>
+  <template id="cusDivTpl">
+    <style>
+      .div-red {
+        background: red;
+        width: 100px; 
+        height: 100px;
+      }
+    </style>
+    <div class="container">
+      web-component
+      <div class="div-red"></div>
+      <div class="div-blue"></div>
+    </div>
+    
+  </template>
+<script>
+  class CusDiv extends HTMLElement {
+    constructor() {
+      super();
+      var templateElem = document.getElementById('cusDivTpl');
+      var content = templateElem.content.cloneNode(true);
+      var shadow = this.attachShadow({mode: 'open'});
+      shadow.appendChild(content);
+    }
+  }
+  window.customElements.define('cus-div', CusDiv);
+  var a= document.getElementById('cusElement');
+  console.log(a.shadowRoot)
+</script>
+
+</body>
+</html>

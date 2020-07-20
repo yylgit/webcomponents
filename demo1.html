@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  经过测试 webcomponent中的样式 可以影响全局的元素 全局的样式也可以影响webcomponent中的元素
+  <style>
+      .div-blue {
+        background: blue;
+        width: 100px; height: 100px;
+      }
+  </style>
+  <div class="div-red"></div>
+  <div class="div-blue"></div>
+  <cus-div></cus-div>
+  <template id="cusDivTpl">
+    <style>
+      .div-red {
+        background: red;
+        width: 100px; 
+        height: 100px;
+      }
+    </style>
+    <div class="container">
+      web-component
+      <div class="div-red"></div>
+      <div class="div-blue"></div>
+    </div>
+    
+  </template>
+<script>
+  class CusDiv extends HTMLElement {
+    constructor() {
+      super();
+      var templateElem = document.getElementById('cusDivTpl');
+      var content = templateElem.content.cloneNode(true);
+      this.appendChild(content);
+    }
+  }
+  window.customElements.define('cus-div', CusDiv);
+</script>
+
+</body>
+</html>
