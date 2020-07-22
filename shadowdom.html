@@ -14,8 +14,8 @@
         width: 100px; height: 100px;
       }
   </style>
-  <div class="div-red"></div>
-  <div class="div-blue"></div>
+  <div class="div-red" ></div>
+  <div class="div-blue" id="divBlue"></div>
   <cus-div id="cusElement"></cus-div>
   <template id="cusDivTpl">
     <style>
@@ -44,7 +44,6 @@
   }
   window.customElements.define('cus-div', CusDiv);
   var a= document.getElementById('cusElement');
-  console.log(a.shadowRoot)
 </script>
 
 </body>
