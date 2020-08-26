@@ -5,18 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+    .div-blue {
+      background: blue;
+      width: 100px; height: 100px;
+    }
+
+    div:last-child
+    {
+     display: none;
+    }
+
+</style>
 </head>
 <body>
   经过测试 使用了shadowdom之后 全局样式影响不了组件内部 组件内部也影响不了全局。
-  <style>
-      .div-blue {
-        background: blue;
-        width: 100px; height: 100px;
-      }
-  </style>
+  
   <div class="div-red" ></div>
   <div class="div-blue" id="divBlue"></div>
-  <cus-div id="cusElement"></cus-div>
+  <cus-div1 id="cusElement"></cus-div1>
   <template id="cusDivTpl">
     <style>
       .div-red {
